@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/dany/scss-syntax.vim-master'
+let g:netrw_dirhist_2='/home/dany'
+let g:netrw_dirhist_3='/home/dany/.vim'
+let g:netrw_dirhist_4='/home/dany/.vim/autoload'
+let g:netrw_dirhist_5='/home/dany/.vim'
+let g:netrw_dirhist_6='/home/dany'
+let g:netrw_dirhist_7='/home/dany/yapo_cl/www/sass'
+let g:netrw_dirhist_8='/home/dany/.vim/bundle/snipmate.vim/snippets'
