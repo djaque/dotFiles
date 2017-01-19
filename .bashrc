@@ -232,3 +232,8 @@ PS1="$LightRed+-[$Default\u$LightGreen@$Purple\h$LightGreen \$(get_branch) $Cyan
 export PATH=$PATH:~/vendor/bin/
 export MSYSTEM_HOME=/opt/m.system/src/
 export GOPATH=~/go
+
+function nose
+{
+	echo "$1" | sed 's/\.\([A-Z]\)/:\1/g' | xargs ./nose.sh;
+}
