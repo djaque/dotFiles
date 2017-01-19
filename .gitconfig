@@ -1,0 +1,18 @@
+[alias]                                                                                                                                                                           
+        br = branch -v
+        co = checkout
+        ci = commit
+        logf = log --name-status
+        st = status -s
+[color]
+        ui = true
+[user]
+        email =YOUR@EMAIL
+        name = PUTYOURNAME
+[merge]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[core]
+	editor = vim
+	pager = less -+F

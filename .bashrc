@@ -24,27 +24,29 @@ function git_diff() {
 }
 
 # export PROMPT_COMMAND="source /usr/local/bin/check_git_branch"
-alias initpackcars='make -C /home/dany/yapo_cl/ db-load-accounts db-load-diff_pack_cars1 db-snap-packauto db-restore-packauto rebuild-asearch redis-flushall'
-alias initpackinmo='make -C /home/dany/yapo_cl/ db-load-accounts db-load-diff_pack_inmo1 db-snap-packinmo db-restore-packinmo rebuild-asearch redis-flushall'
-alias restorepackcars='make -C /home/dany/yapo_cl/ db-restore-packauto rebuild-asearch redis-flushall'
-alias restorepackinmo='make -C /home/dany/yapo_cl/ db-restore-packinmo rebuild-asearch redis-flushall'
-alias home='cd /home/dany'
-alias work='cd /home/dany/yapo_cl'
-alias api='cd /home/dany/accounts_api'
+alias initpackcars='make -C ~/yapo_cl/ db-load-accounts db-load-diff_pack_cars1 db-snap-packauto db-restore-packauto rebuild-asearch redis-flushall'
+alias initpackinmo='make -C ~/yapo_cl/ db-load-accounts db-load-diff_pack_inmo1 db-snap-packinmo db-restore-packinmo rebuild-asearch redis-flushall'
+alias restorepackcars='make -C ~/yapo_cl/ db-restore-packauto rebuild-asearch redis-flushall'
+alias restorepackinmo='make -C ~/yapo_cl/ db-restore-packinmo rebuild-asearch redis-flushall'
+alias home='cd ~'
+alias work='cd ~/yapo_cl'
+alias gork='cd ~/go/src/github.schibsted.io/Yapo/creditos'
+alias api='cd ~/accounts_api'
 alias psux='ps ux'
-alias mkae='make'
+alias mkae='make -s'
+alias make='make -s'
 alias mk='make'
 alias meka='make'
 alias rinfo='make rinfo'
 alias rall='make rall'
 alias cleanlogs='make cleanlogs'
-alias translog='less /tmp/dany-regress.log'
-alias database='psql -h /dev/shm/regress-dany/pgsql0/data blocketdb'
-alias redissession='redis-cli -p 20249'
-alias makefinal='make -C /home/dany/yapo_cl/regress/final/' 
-alias loadaccounts='make -C /home/dany/yapo_cl/ db-load-accounts rebuild-asearch' 
+alias translog='less /tmp/`echo $USER`-regress.log'
+alias database='psql -h /dev/shm/regress-`echo $USER`/pgsql0/data blocketdb'
+alias redissession='redis-cli -p 23449'
+alias makefinal='make -C ~/yapo_cl/regress/final/' 
+alias loadaccounts='make -C ~/yapo_cl/ db-load-accounts rebuild-asearch' 
 alias pbconf='printf "cmd:bconf\ncommit:1\nend\n"'
-alias totrans='nc localhost 20205'
+alias totrans='nc localhost 23405'
 alias dnylog='git log --graph --pretty=format:"%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --date=short'
 alias mk='make'
 alias got='git'
@@ -78,7 +80,7 @@ alias help='git help'
 alias clean_preview='git clean -n -f'
 alias clean='git clean -f'
 alias clean_shit_up='git clean -Xfd'
-alias ggrep='git grep -ni'
+alias gg='git grep -ni'
 alias resource='source ~/.bashrc'
 
 function show_local
@@ -227,3 +229,6 @@ function toLower() {
 }
 
 PS1="$LightRed+-[$Default\u$LightGreen@$Purple\h$LightGreen \$(get_branch) $Cyan\w$LightRed]\n$LightRed+->$Default "
+export PATH=$PATH:~/vendor/bin/
+export MSYSTEM_HOME=/opt/m.system/src/
+export GOPATH=~/go
