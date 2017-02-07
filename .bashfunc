@@ -1,0 +1,160 @@
+# .bashrc
+
+function parse_git_branch () {
+	local he="$(git branch 2>&- | sed '/^\*/!d; s/.* //')";
+	if [ ! -z $he ]; then
+		echo -e "[ $he ]";
+	fi
+}
+
+function git_diff() {
+	git diff --no-ext-diff -w "$@" | vim -R -
+}
+
+function show_local
+{
+    echo "Showing unpushed Commits";
+    git log origin/$(get_branch)..HEAD --pretty=format:"%Cred%h%Creset-%C(bold blue)<%an> %Cgreen(%ar)%Creset : %s";
+}
+
+function prep_current
+{
+    echo "Preping";
+    echo "";
+    echo "fetching";
+    git fetch;
+    echo "pulling";
+    git pull;
+    echo "hard resetting";
+    git reset --hard;
+    echo "Done";
+}
+
+# diff 2 branches
+# diff_b <branch_name> <branch_name>
+function diffb()
+{
+   branch=$2;  
+   echo "Compare $1 to $branch"
+   git difftool --dir-diff $1..$branch
+}
+
+# diff the given branch with master
+# diff_master <branch_name>
+function diff_master()
+{
+   branch=$1;  
+   echo "Compare master to $branch"
+   git difftool --dir-diff origin/master..$branch
+}
+
+# diff your uncommitted work to what's checked in
+# diff_work
+function diff_work()
+{
+    git status;
+    echo " ";
+    show_local;
+    git difftool --dir-diff HEAD;
+}
+
+# pull branch from origin
+function pull
+{
+    branch=$(get_branch);
+    git pull --rebase origin $branch
+}
+
+# push branch 
+function push 
+{
+    branch=$(get_branch);
+    git push origin $branch
+}
+
+#hard reset current branch
+function reset_hard
+{
+    branch=$(get_branch);
+    git reset --hard origin/$branch;
+}
+
+# create a new branch from master
+# call with branch_master <branch name>
+function branch_master() { 
+   branch=$@;
+   echo "creating $branch";
+   echo "fetch master";
+   git fetch origin master;
+   echo "branch from master";
+   git checkout -b $branch master; 
+   echo "push branch remotely";
+   git push origin $branch;
+   git branch -vv;
+}
+
+# create a new branch from master
+# call with branch_master <branch name>
+function branch_current() { 
+   branch=$@;
+   curr=$(get_branch);
+   echo "creating $branch";
+   echo "fetch master";
+   git fetch origin $curr;
+   echo "branch from master";
+   git checkout -b $branch $curr; 
+   echo "push branch remotely";
+   git push origin $branch;
+   git branch -vv;
+}
+
+# delete branch locally and remotely
+# call with nuke_branch <branch name>
+function nuke_branch() { 
+    branch=$@;
+    echo "deleting local branch";
+    git branch -D $branch; 
+    echo "deleting remote branch";
+    git push origin --delete $branch;
+    echo "show current branches";
+    git remote show origin;
+}
+
+#delete branch locally
+#call with delete_branch <branch name>
+function delete_branch()
+{
+    branch=$@;
+    echo "deleting local branch";
+    git branch -d $branch; 
+    echo "show current branches";
+    git branch
+}
+
+function log()
+{
+	git log --stat --pretty=short --graph
+}
+
+function show_custom()
+{
+    echo "Aliases ... "
+    alias
+    echo "Functions ... "
+    set | grep -A 1000 "branch" |grep \(\)
+}
+
+function get_branch
+{
+    git branch 2> /dev/null | grep "*" | sed "s/* //";
+}
+
+#lowercase a string
+function toLower() {
+   echo "$1" | tr "[:upper:]" "[:lower:]";
+}
+
+function nose
+{
+	echo "$1" | sed 's/\.\([A-Z]\)/:\1/g' | xargs ./nose.sh;
+}
