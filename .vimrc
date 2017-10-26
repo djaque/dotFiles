@@ -6,7 +6,7 @@
 :com Wa wa
 :set splitbelow
 :set splitright
-
+:set list
 :set cursorline
 :set noswapfile
 ":se cursorline
@@ -17,8 +17,10 @@
 :autocmd FileType * set tabstop=4|set shiftwidth=4|set smartindent|set smarttab|set noexpandtab
 :autocmd FileType python set tabstop=4|set shiftwidth=4|set smartindent|set smarttab|set expandtab
 :autocmd FileType php set tabstop=4|set shiftwidth=4|set smartindent|set smarttab|set expandtab|highlight OverLength ctermbg=red ctermfg=white guibg=#592929|match OverLength /\%121v.\+/
+:autocmd FileType sql set tabstop=4|set shiftwidth=4|set smartindent|set smarttab|set expandtab|highlight OverLength ctermbg=red ctermfg=white guibg=#592929|match OverLength /\%321v.\+/
 :autocmd FileType javascript set tabstop=2|set shiftwidth=2|set smartindent|set smarttab|set expandtab
 :nmap Q :echo "Q"<CR>
+:com Chtab set noet ci pi sts=0 sw=4 ts=4
 :colorscheme molokai
 ":colorscheme desert
 execute pathogen#infect()

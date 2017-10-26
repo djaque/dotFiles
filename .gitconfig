@@ -4,6 +4,7 @@
         ci = commit
         logf = log --name-status
         st = status -s
+		showf = show --pretty="format:" --name-only
 [color]
         ui = true
 [user]
